@@ -33,7 +33,7 @@ from aaaaaa.p_method import (
 from aaaaaa.traceback import rich_traceback
 from aaaaaa.ui import WebuiInfo, adui, ordinal, suffix
 from adetailer import (
-    ADETAILER,
+    AFTER_DETAILER,
     __version__,
     get_models,
     mediapipe_predict,
@@ -110,7 +110,7 @@ class AfterDetailerScript(scripts.Script):
         return f"{self.__class__.__name__}(version={__version__})"
 
     def title(self):
-        return ADETAILER
+        return AFTER_DETAILER
 
     def show(self, is_img2img):
         return scripts.AlwaysVisible
@@ -846,7 +846,7 @@ def on_after_component(component, **_kwargs):
 
 
 def on_ui_settings():
-    section = ("ADetailer", ADETAILER)
+    section = ("ADetailer", AFTER_DETAILER)
     shared.opts.add_option(
         "ad_max_models",
         shared.OptionInfo(

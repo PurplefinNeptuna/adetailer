@@ -7,8 +7,7 @@ from typing import Any
 
 import gradio as gr
 
-from aaaaaa.conditional import InputAccordion
-from adetailer import ADETAILER, __version__
+from adetailer import AFTER_DETAILER, __version__
 from adetailer.args import ALL_ARGS, MASK_MERGE_INVERT
 from controlnet_ext import controlnet_exists, controlnet_type, get_cn_models
 
@@ -124,14 +123,17 @@ def adui(
     infotext_fields = []
     eid = partial(elem_id, n=0, is_img2img=is_img2img)
 
-    with InputAccordion(
-        value=False,
-        elem_id=eid("ad_main_accordion"),
-        label=ADETAILER,
-        visible=True,
-    ) as ad_enable:
+    with gr.Accordion(AFTER_DETAILER, open=False, elem_id=eid("ad_main_accordion")):
         with gr.Row():
-            with gr.Column(scale=8):
+            with gr.Column(scale=6):
+                ad_enable = gr.Checkbox(
+                    label="Enable ADetailer",
+                    value=False,
+                    visible=True,
+                    elem_id=eid("ad_enable"),
+                )
+
+            with gr.Column(scale=6):
                 ad_skip_img2img = gr.Checkbox(
                     label="Skip img2img",
                     value=False,
